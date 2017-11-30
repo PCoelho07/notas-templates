@@ -1,0 +1,12 @@
+#user-login-form ul {
+  display: none;
+}
+
+form .form-group.has-error label {
+  color: red !important;
+}
+
+table thead {
+  background: #2c3e50;
+  color: white;
+}
