@@ -21,7 +21,7 @@
 			<div class="form-group col-md-12">
 				<label for="">Tokens:</label>
 				<div class="well">
-					Teste
+					
 				</div>
 			</div>
 		</div>
@@ -29,7 +29,8 @@
 		<div class="row">
 			<div class="form-group col-md-12">
 				<label for="text_template">Texto:</label>
-				<textarea class="form-control" name="text_template" v-model='role.textTemplate' cols="30" rows="10" required=""></textarea>
+
+				<tinymce id='d1' v-model="role.textTemplate"></tinymce>	
 			</div>
 		</div>
 
@@ -64,7 +65,9 @@
 		},
 		computed: {
 			isValid: function() {
-				return ((this.role.nome != '') && (this.role.roleSelected != 0)) && (this.role.textTemplate != '');
+				return ((this.role.nome != '') 
+							&& (this.role.roleSelected != 0)) 
+								&& (this.role.textTemplate != '');
 			}
 		},
 		mounted() {

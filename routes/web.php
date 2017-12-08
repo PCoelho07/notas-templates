@@ -19,8 +19,10 @@ Route::resource('/clients', 'ClientsController');
 
 Route::resource('/client-roles', 'Client\RolesController');
 
-Route::get('/templates', 'TemplateController@index');
 
+// Route::get('/vinculo-clients', '');
+
+Route::get('/templates', 'TemplateController@index');
 Route::get('/templates/create', 'TemplateController@create');
 Route::get('/templates/edit', 'TemplateController@edit');
 

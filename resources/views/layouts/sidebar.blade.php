@@ -12,6 +12,7 @@
               <ul class="nav child_menu ch2">
                 <li><a href="/clients">Clientes</a></li>
                 <li><a href="/templates">Templates</a></li>
+                <li><a href="/cliente-qualificacao">Qualificação por cliente</a></li>
               </ul>
             </li>
           </ul>
