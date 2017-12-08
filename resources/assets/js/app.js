@@ -17,6 +17,10 @@ window.Vue = require('vue');
 
 Vue.component('example', require('./components/Example.vue'));
 
+Vue.component('template-component', require('./components/Templates.vue'));
+Vue.component('template-edit', require('./components/TemplateEdit.vue'));
+Vue.component('template-create', require('./components/TemplateCreate.vue'));
+
 const app = new Vue({
     el: '#app'
 });

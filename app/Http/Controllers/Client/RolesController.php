@@ -67,4 +67,13 @@ class RolesController extends Controller
 
         return redirect('client-roles');
     }
+
+    public function getAll()
+    {
+        $role = Role::all();
+
+        return response()->json([
+            'result' => $role
+        ]);
+    }
 }

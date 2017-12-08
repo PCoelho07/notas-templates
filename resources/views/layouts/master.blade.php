@@ -24,6 +24,7 @@
   <!--[if lt IE 9]>
     <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body>
@@ -46,6 +47,7 @@
 
   @include ('layouts.footer')
 
+  <script src="{{ asset('js/app.js') }}"></script>
   <script src="/js/jquery.min.js"></script>
   <script src="/js/jquery.once.js"></script>
   <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
