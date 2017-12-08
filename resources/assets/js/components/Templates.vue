@@ -63,7 +63,7 @@
 					'id': id
 				};
 
-				axios.post('/api/template/delete', data)
+				axios.post('/api/templates/delete', data)
 							.then(function(response) {
 								self.templates = response.data['result'];
 								console.log(self.templates);

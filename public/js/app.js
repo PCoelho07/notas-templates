@@ -43019,7 +43019,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				'id': id
 			};
 
-			axios.post('/api/template/delete', data).then(function (response) {
+			axios.post('/api/templates/delete', data).then(function (response) {
 				self.templates = response.data['result'];
 				console.log(self.templates);
 			}).catch(function (error) {
@@ -43376,7 +43376,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		storeTemplate: function storeTemplate(e) {
 			e.preventDefault();
-			console.log(this.role);
+			var self = this;
+
+			var data = {
+				'roles_id': this.role.roleSelected,
+				'txt_template': this.role.textTemplate,
+				'nome': this.role.nome
+			};
+
+			axios.post('/api/templates', data).then(function (response) {
+				window.location.href = '/templates';
+			});
 		}
 
 	}
@@ -43391,148 +43401,152 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("form", { on: { submit: _vm.storeTemplate } }, [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "form-group col-md-4" }, [
-        _c("label", { attrs: { for: "name" } }, [_vm._v("Nome template:")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.role.nome,
-              expression: "role.nome"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { type: "text", name: "name", value: "", required: "" },
-          domProps: { value: _vm.role.nome },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.role, "nome", $event.target.value)
-            }
-          }
-        })
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "form-group col-md-4" }, [
-        _c("label", { attrs: { for: "roles_text" } }, [_vm._v("Papel:")]),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
+  return _c(
+    "form",
+    { attrs: { method: "POST" }, on: { submit: _vm.storeTemplate } },
+    [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "form-group col-md-4" }, [
+          _c("label", { attrs: { for: "name" } }, [_vm._v("Nome template:")]),
+          _vm._v(" "),
+          _c("input", {
             directives: [
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.role.roleSelected,
-                expression: "role.roleSelected"
+                value: _vm.role.nome,
+                expression: "role.nome"
               }
             ],
             staticClass: "form-control",
-            attrs: { name: "roles_text" },
+            attrs: { type: "text", name: "name", value: "", required: "" },
+            domProps: { value: _vm.role.nome },
             on: {
-              change: function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.$set(
-                  _vm.role,
-                  "roleSelected",
-                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                )
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.role, "nome", $event.target.value)
               }
             }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "form-group col-md-4" }, [
+          _c("label", { attrs: { for: "roles_text" } }, [_vm._v("Papel:")]),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.role.roleSelected,
+                  expression: "role.roleSelected"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { name: "roles_text" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.role,
+                    "roleSelected",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                }
+              }
+            },
+            [
+              _c(
+                "option",
+                { attrs: { value: "0", selected: "", disabled: "" } },
+                [_vm._v("Escolha um papel...")]
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.roles, function(role) {
+                return _c("option", { domProps: { value: role.id } }, [
+                  _vm._v(_vm._s(role.description))
+                ])
+              })
+            ],
+            2
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._m(0, false, false),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "form-group col-md-12" }, [
+          _c("label", { attrs: { for: "text_template" } }, [_vm._v("Texto:")]),
+          _vm._v(" "),
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.role.textTemplate,
+                expression: "role.textTemplate"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: {
+              name: "text_template",
+              cols: "30",
+              rows: "10",
+              required: ""
+            },
+            domProps: { value: _vm.role.textTemplate },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.role, "textTemplate", $event.target.value)
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("br"),
+      _c("br"),
+      _vm._v(" "),
+      _c("br"),
+      _c("br"),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group add" }, [
+        _vm._m(1, false, false),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary btn-md",
+            attrs: { role: "submit", disabled: !_vm.isValid }
           },
           [
-            _c(
-              "option",
-              { attrs: { value: "0", selected: "", disabled: "" } },
-              [_vm._v("Escolha um papel...")]
-            ),
-            _vm._v(" "),
-            _vm._l(_vm.roles, function(role) {
-              return _c("option", { domProps: { value: role.id } }, [
-                _vm._v(_vm._s(role.description))
-              ])
-            })
-          ],
-          2
+            _c("span", {
+              staticClass: "glyphicon glyphicon-plus-sign",
+              attrs: { "aria-hidden": "true" }
+            }),
+            _vm._v("\n\t    Cadastrar\n\t  ")
+          ]
         )
       ])
-    ]),
-    _vm._v(" "),
-    _vm._m(0, false, false),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "form-group col-md-12" }, [
-        _c("label", { attrs: { for: "text_template" } }, [_vm._v("Texto:")]),
-        _vm._v(" "),
-        _c("textarea", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.role.textTemplate,
-              expression: "role.textTemplate"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: {
-            name: "text_template",
-            cols: "30",
-            rows: "10",
-            required: ""
-          },
-          domProps: { value: _vm.role.textTemplate },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.role, "textTemplate", $event.target.value)
-            }
-          }
-        })
-      ])
-    ]),
-    _vm._v(" "),
-    _c("br"),
-    _c("br"),
-    _vm._v(" "),
-    _c("br"),
-    _c("br"),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-group add" }, [
-      _vm._m(1, false, false),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary btn-md",
-          attrs: { role: "submit", disabled: !_vm.isValid }
-        },
-        [
-          _c("span", {
-            staticClass: "glyphicon glyphicon-plus-sign",
-            attrs: { "aria-hidden": "true" }
-          }),
-          _vm._v("\n\t    Cadastrar\n\t  ")
-        ]
-      )
-    ])
-  ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -43556,7 +43570,7 @@ var staticRenderFns = [
       {
         staticClass: "btn btn-danger btn-md",
         staticStyle: { "line-height": "2em" },
-        attrs: { href: "/clients" }
+        attrs: { href: "/templates" }
       },
       [
         _c("span", {

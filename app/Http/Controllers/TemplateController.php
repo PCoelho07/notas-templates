@@ -36,7 +36,15 @@ class TemplateController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $data = [
+            'client_roles_id'   => $request->input('roles_id'),
+            'text_template'     => $request->input('txt_template'),
+            'nome'              => $request->input('nome')
+        ];
+
+        $templates = Template::create($data);
+
+        return response()->json(['result' => 'success'], 200);
     }
 
     /**

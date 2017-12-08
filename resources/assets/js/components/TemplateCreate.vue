@@ -1,5 +1,5 @@
 <template>
-	<form v-on:submit="storeTemplate">
+	<form method="POST" v-on:submit="storeTemplate">
 		<div class="row">
 		  <div class="form-group col-md-4">
 		    <label for="name">Nome template:</label>
@@ -37,7 +37,7 @@
 		<br><br>
 
 		<div class="form-group add">
-		  <a href="/clients" class="btn btn-danger btn-md" style="line-height: 2em">
+		  <a href="/templates" class="btn btn-danger btn-md" style="line-height: 2em">
 		    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 		    Cancelar
 		  </a>
@@ -85,7 +85,18 @@
 			},
 			storeTemplate: function(e) {
 				e.preventDefault();
-				console.log(this.role);
+				var self = this;
+
+				var data = {
+					'roles_id': this.role.roleSelected,
+					'txt_template': this.role.textTemplate,
+					'nome': this.role.nome
+				};
+
+				axios.post('/api/templates', data)
+						.then(function(response) {
+							window.location.href = '/templates';
+						});
 			},
 
 		}
