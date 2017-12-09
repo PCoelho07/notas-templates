@@ -33,4 +33,11 @@ Route::prefix('api')->group(function() {
 
 	Route::get('roles', 'Client\RolesController@getAll');
 
+    Route::get('cliente-qualificacao', 'Client\QualificacaoController@getAll');
+    Route::post('cliente-qualificacao/delete', 'Client\QualificacaoController@delete');
+
+
 });
+
+
+Route::get('/cliente-qualificacao', 'Client\QualificacaoController@index');

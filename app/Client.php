@@ -36,4 +36,9 @@ class Client extends Model
 
         return $result;
     }
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Client\Role', 'client_qualification', 'client_id', 'role_id')->withTimestamps();
+    }
 }

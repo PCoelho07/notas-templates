@@ -24,6 +24,7 @@ Vue.component('example', require('./components/Example.vue'));
 Vue.component('template-component', require('./components/Templates.vue'));
 Vue.component('template-edit', require('./components/TemplateEdit.vue'));
 Vue.component('template-create', require('./components/TemplateCreate.vue'));
+Vue.component('qualificacao-component', require('./components/QualificacaoComponent.vue'));
 
 const app = new Vue({
     el: '#app'
