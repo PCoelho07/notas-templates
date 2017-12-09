@@ -256,4 +256,13 @@ class ClientsController extends Controller
 
         return redirect('clients');
     }
+
+    public function getAll()
+    {
+        $clients = Client::all();
+
+        return response()->json([
+                'result' => $clients
+            ]);
+    }
 }

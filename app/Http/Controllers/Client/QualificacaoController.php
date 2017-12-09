@@ -10,7 +10,12 @@ class QualificacaoController extends Controller
 {
     public function index()
     {
-    	return view('clients.qualificacao');
+    	return view('client-qualificacao.qualificacao');
+    }
+
+    public function create()
+    {
+    	return view('client-qualificacao.create');
     }
 
     public function getAll()

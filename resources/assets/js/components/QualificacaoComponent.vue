@@ -16,18 +16,13 @@
 	                            <td>{{ client.name }}</td>
 	                            <td>
 	                            	<div v-for="role in client.roles">
-	                            		<span class="label label-default">{{ role.description }}</span>
+	                            		<span class="label label-primary">{{ role.description }}</span>
 	                            	</div>
 	                            </td>
 	                            <td class="text-center">
-	                                    <a href="/edit" class="btn btn-link btn-xs" title="Editar">
-	                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-	                                    </a>
-
-	                                    <button class="btn btn-link btn-xs" title="Excluir" @click="delClient(client.id)">
-	                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-	                                    </button>
-	                                </form>
+                                    <a href="/edit" class="btn btn-link btn-xs" title="Editar">
+                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                    </a>
 	                            </td>
 	                        </tr>
                     </tbody>
@@ -45,7 +40,6 @@
 			}
 		},
 		mounted: function() {
-			console.log("Qualificacao mounted");
 			this.init();
 		},
 		methods: {

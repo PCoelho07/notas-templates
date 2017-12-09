@@ -94,4 +94,20 @@ class TemplateController extends Controller
             'result' => $templates
         ]);
     }
+
+    public function getContentTemplate($idTemplate)
+    {
+        // $idClient =
+        $template = Template::find($idTemplate);
+
+        if (!$template) {
+            return response()->json([
+                'result' => 'error'
+            ], 402);            
+        }
+
+        return response()->json([
+                'result' => $template->text_template
+            ]);
+    }
 }

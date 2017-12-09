@@ -26,18 +26,21 @@ Route::get('/templates', 'TemplateController@index');
 Route::get('/templates/create', 'TemplateController@create');
 Route::get('/templates/edit', 'TemplateController@edit');
 
-Route::prefix('api')->group(function() {
-	Route::get('templates', 'TemplateController@getAll');
-	Route::post('templates', 'TemplateController@store');
-	Route::post('templates/delete', 'TemplateController@delete');
+Route::get('/cliente-qualificacao', 'Client\QualificacaoController@index');
+Route::get('/cliente-qualificacao/create', 'Client\QualificacaoController@create');
 
-	Route::get('roles', 'Client\RolesController@getAll');
+Route::prefix('api')->group(function() {
+    Route::get('templates', 'TemplateController@getAll');
+    Route::get('templates/content/{idTemplate}', 'TemplateController@getContentTemplate');
+    Route::post('templates', 'TemplateController@store');
+    Route::post('templates/delete', 'TemplateController@delete');
+
+    Route::get('roles', 'Client\RolesController@getAll');
 
     Route::get('cliente-qualificacao', 'Client\QualificacaoController@getAll');
     Route::post('cliente-qualificacao/delete', 'Client\QualificacaoController@delete');
 
+    Route::get('clients', 'ClientsController@getAll');
 
 });
 
-
-Route::get('/cliente-qualificacao', 'Client\QualificacaoController@index');
