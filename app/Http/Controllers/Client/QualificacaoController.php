@@ -18,6 +18,13 @@ class QualificacaoController extends Controller
     	return view('client-qualificacao.create');
     }
 
+    public function store(Request $request)
+    {
+    	$idClient = $request->input('client_id');
+    	$idTemplate = $request->input('template_id');
+    	$idRole = $request->input('role_id');
+    }
+
     public function getAll()
     {
     	$clients = Client::with('roles')->get();

@@ -76,4 +76,16 @@ class RolesController extends Controller
             'result' => $role
         ]);
     }
+
+    public function getTemplatesByRole($id)
+    {
+        $role = Role::findOrFail($id);
+
+        if(!$role)
+            return response()->json([], 404);
+
+        return response()->json([
+            'result' => $role->templates
+        ]);
+    }
 }

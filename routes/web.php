@@ -36,8 +36,10 @@ Route::prefix('api')->group(function() {
     Route::post('templates/delete', 'TemplateController@delete');
 
     Route::get('roles', 'Client\RolesController@getAll');
+    Route::get('role/{id}/templates', 'Client\RolesController@getTemplatesByRole');
 
     Route::get('cliente-qualificacao', 'Client\QualificacaoController@getAll');
+    Route::post('cliente-qualificacao', 'Client\QualificacaoController@store');
     Route::post('cliente-qualificacao/delete', 'Client\QualificacaoController@delete');
 
     Route::get('clients', 'ClientsController@getAll');
