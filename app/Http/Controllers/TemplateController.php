@@ -9,8 +9,12 @@ use App\Client;
 
 use PDF;
 
+use App\Traits\CustomBladeCompiler;
+
 class TemplateController extends Controller
 {
+
+    use CustomBladeCompiler;
     /**
      * Display a listing of the resource.
      *
@@ -112,8 +116,24 @@ class TemplateController extends Controller
             ], 402);            
         }
 
+        $matches = [];
+        
+        // Capturo os tokens
+        $regex = preg_match('/{{ \$([aA-z]*) }}/', $template->text_template, $matches);
+
+        // // Ver quais tokens
+        // // carregar as variaveis de acordo com os tokens
+
+
+        // var_dump($matches);
+
+        $textCompiled = CustomBladeCompiler::render($template->text_template, ['nomeusuario' => $client->name]);
+
         return response()->json([
-                'result' => $template->text_template
+                'result' => $regex
         ]);
+
+
+
     }
 }
