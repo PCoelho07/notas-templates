@@ -131,10 +131,11 @@
 				var self = this;
 
 				var data = {
-					'idTemplate': this.result.template
+					'idTemplate': this.result.template,
+					'idClient'  : this.result.client
 				}
 
-				axios.get('/api/templates/content/'+this.result.template)
+				axios.post('/api/templates/content/', data)
 						.then(function (response){
 							self.result.txtTemplate = response.data['result'];
 						});

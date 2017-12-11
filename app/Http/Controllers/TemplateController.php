@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Template;
+use App\Client;
+
+use PDF;
 
 class TemplateController extends Controller
 {
@@ -95,12 +98,15 @@ class TemplateController extends Controller
         ]);
     }
 
-    public function getContentTemplate($idTemplate)
+    public function getContentTemplate(Request $request)
     {
-        // $idClient =
+        $idClient = $request->input('idClient');
+        $idTemplate = $request->input('idTemplate');
+
+        $client = Client::find($idClient);
         $template = Template::find($idTemplate);
 
-        if (!$template) {
+        if (!$template || !$client) {
             return response()->json([
                 'result' => 'error'
             ], 402);            
@@ -108,6 +114,6 @@ class TemplateController extends Controller
 
         return response()->json([
                 'result' => $template->text_template
-            ]);
+        ]);
     }
 }

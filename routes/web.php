@@ -31,7 +31,7 @@ Route::get('/cliente-qualificacao/create', 'Client\QualificacaoController@create
 
 Route::prefix('api')->group(function() {
     Route::get('templates', 'TemplateController@getAll');
-    Route::get('templates/content/{idTemplate}', 'TemplateController@getContentTemplate');
+    Route::post('templates/content', 'TemplateController@getContentTemplate');
     Route::post('templates', 'TemplateController@store');
     Route::post('templates/delete', 'TemplateController@delete');
 
