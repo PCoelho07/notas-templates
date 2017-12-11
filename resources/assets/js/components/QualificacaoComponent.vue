@@ -15,6 +15,9 @@
 	                        <tr v-for="client in clients">
 	                            <td>{{ client.name }}</td>
 	                            <td>
+	                            	<div v-if="client.roles.length <= 0">
+	                            		<span class="label label-warning">Não há qualificações para este cliente</span>
+	                            	</div>
 	                            	<div v-for="role in client.roles">
 	                            		<span class="label label-primary">{{ role.description }}</span>
 	                            	</div>

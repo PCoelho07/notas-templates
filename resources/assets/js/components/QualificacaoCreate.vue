@@ -24,7 +24,8 @@
 		<div class="row">
 			<div class="form-group col-md-4">
 			  	<label for="template_field">Template:</label>
-			  	<select class="form-control" name="template_field" v-model="result.template" @change="loadContentTemplate()">
+			  	<select class="form-control" name="template_field" v-model="result.template" 
+			  				@change="loadContentTemplate()">
 			  		<option value="0" selected disabled="">Escolha um template...</option>
 			  		<option :value="t.id" v-for="t in templates"> {{ t.nome }} </option>
 			  	</select>
@@ -42,7 +43,7 @@
 		<br><br>
 
 		<div class="form-group add">
-		  <a href="/templates" class="btn btn-danger btn-md" style="line-height: 2em">
+		  <a href="/cliente-qualificacao" class="btn btn-danger btn-md" style="line-height: 2em">
 		    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 		    Cancelar
 		  </a>
@@ -102,7 +103,8 @@
 							self.roles = response.data['result'];
 						});
 			},
-			storeVinculo: function() {
+			storeVinculo: function(e) {
+				e.preventDefault();
 				var self = this;
 
 				var data = {

@@ -12,8 +12,4 @@ class Token extends Model
     	'name', 'slug', 'variable', 'created_at', 'updated_at'
     ];
 
-    // public function templates()
-    // {
-    // 	return $this->belongsToMany();
-    // }
 }

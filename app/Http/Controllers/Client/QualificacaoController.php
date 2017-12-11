@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Client;
+use App\ClientQualification;
 
 class QualificacaoController extends Controller
 {
@@ -23,11 +24,20 @@ class QualificacaoController extends Controller
     	$idClient = $request->input('client_id');
     	$idTemplate = $request->input('template_id');
     	$idRole = $request->input('role_id');
+
+    	$clientQualification = new ClientQualification;
+    	$clientQualification->client_id = $idClient;
+    	$clientQualification->role_id = $idRole;
+    	$clientQualification->template_id = $idTemplate;
+
+
+    	$clientQualification->save();
+    	
     }
 
     public function getAll()
     {
-    	$clients = Client::with('roles')->get();
+    	$clients = Client::with(['roles', 'templates'])->get();
 
     	return response()->json([
     				'result' => $clients
