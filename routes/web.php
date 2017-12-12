@@ -44,5 +44,7 @@ Route::prefix('api')->group(function() {
 
     Route::get('clients', 'ClientsController@getAll');
 
+    Route::get('tokens', 'TokenController@getAll');
+
 });
 

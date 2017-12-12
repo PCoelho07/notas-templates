@@ -21,7 +21,9 @@
 			<div class="form-group col-md-12">
 				<label for="">Tokens:</label>
 				<div class="well">
-					
+					<div v-for="token in tokens">
+						<a class="btn btn-default" @click="insertText" >{{ token.slug }}</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -54,6 +56,7 @@
 		data() {
 			return {
 				roles: [],
+				tokens: [],
 				
 				role: {
 					nome: '',
@@ -76,6 +79,7 @@
 		methods: {
 			init: function() {
 				this.getAllRoles();
+				this.getAllTokens();
 			},
 			getAllRoles: function() {
 				var self = this;
@@ -84,6 +88,14 @@
 						.then(function (response) {
 							self.roles = response.data['result'];
 							console.log(self.roles);
+						});
+			},
+			getAllTokens: function() {
+				var self = this;
+
+				axios.get('/api/tokens')
+						.then(function (response){
+							self.tokens = response.data['result'];
 						});
 			},
 			storeTemplate: function(e) {
@@ -101,6 +113,19 @@
 							window.location.href = '/templates';
 						});
 			},
+			insertText: function() {
+					
+					var text = this.role.textTemplate;
+
+
+		            var cursorPos = $('#d1').prop('selectionStart');
+		            var v = this.role.txtTemplate;
+		            var textBefore = v.substring(0,  cursorPos );
+		            var textAfter  = v.substring( cursorPos, v.length );
+		            // $('#text').val( textBefore+ $(this).val() +textAfter );
+		            this.role.txtTemplate = textBefore+ this.role.txtTemplate +textAfter;
+		        
+			}
 
 		}
 

@@ -10,6 +10,7 @@ use App\Client;
 use PDF;
 
 use App\Traits\CustomBladeCompiler;
+use App\Token;
 
 class TemplateController extends Controller
 {
@@ -117,20 +118,25 @@ class TemplateController extends Controller
         }
 
         $matches = [];
+        $data = [];
         
-        // Capturo os tokens
         $regex = preg_match('/{{ \$([aA-z]*) }}/', $template->text_template, $matches);
 
-        // // Ver quais tokens
-        // // carregar as variaveis de acordo com os tokens
 
+        for ($i = 1; $i < count($matches) ; $i++) {
+            
+            $token = Token::where('slug', $matches[$i])
+                                ->first();
 
-        // var_dump($matches);
+            if ($token) {
+                $data[$token->slug] = $client->{$token->variable};
+            }
+        }
 
-        $textCompiled = CustomBladeCompiler::render($template->text_template, ['nomeusuario' => $client->name]);
+        $textCompiled = CustomBladeCompiler::render($template->text_template, $data);
 
         return response()->json([
-                'result' => $regex
+                'result' => $textCompiled
         ]);
 
 
