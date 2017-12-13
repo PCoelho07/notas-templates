@@ -46,4 +46,10 @@ class Client extends Model
     {
         return $this->belongsToMany('App\Template', 'client_qualification', 'client_id', 'template_id')->withTimestamps();
     }
+
+    public function getTableColumns() {
+        return $this->getConnection()
+                        ->getSchemaBuilder()
+                        ->getColumnListing($this->getTable());
+    }
 }

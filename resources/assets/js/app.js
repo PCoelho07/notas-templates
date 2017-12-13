@@ -28,6 +28,8 @@ Vue.component('template-create', require('./components/TemplateCreate.vue'));
 Vue.component('qualificacao-component', require('./components/QualificacaoComponent.vue'));
 Vue.component('qualificacao-create', require('./components/QualificacaoCreate.vue'));
 
+Vue.component('token-create',require('./components/TokenCreate.vue'));
+
 const app = new Vue({
     el: '#app'
 });

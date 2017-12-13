@@ -22,7 +22,7 @@
 				<label for="">Tokens:</label>
 				<div class="well">
 					<div v-for="token in tokens">
-						<a class="btn btn-default" @click="insertText" >{{ token.slug }}</a>
+						<button class="btn btn-default" @click="insertText" >{{ token.slug }}</button>
 					</div>
 				</div>
 			</div>

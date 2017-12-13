@@ -265,4 +265,13 @@ class ClientsController extends Controller
                 'result' => $clients
             ]);
     }
+
+    public function getTableColumns()
+    {
+        $clients = new Client;
+
+        return response()->json([
+            'result' => $clients->getTableColumns()
+        ]);
+    }
 }

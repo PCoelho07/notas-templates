@@ -120,12 +120,12 @@ class TemplateController extends Controller
         $matches = [];
         $data = [];
         
-        $regex = preg_match('/{{ \$([aA-z]*) }}/', $template->text_template, $matches);
+        $regex = preg_match_all('/{{ \$([aA-z]*) }}/', $template->text_template, $matches);
 
 
-        for ($i = 1; $i < count($matches) ; $i++) {
+        for ($i = 0; $i < count($matches[1]) ; $i++) {
             
-            $token = Token::where('slug', $matches[$i])
+            $token = Token::where('slug', $matches[1][$i])
                                 ->first();
 
             if ($token) {

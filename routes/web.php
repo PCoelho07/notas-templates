@@ -29,6 +29,8 @@ Route::get('/templates/edit', 'TemplateController@edit');
 Route::get('/cliente-qualificacao', 'Client\QualificacaoController@index');
 Route::get('/cliente-qualificacao/create', 'Client\QualificacaoController@create');
 
+Route::get('/tokens/create', 'TokenController@create');
+
 Route::prefix('api')->group(function() {
     Route::get('templates', 'TemplateController@getAll');
     Route::post('templates/content', 'TemplateController@getContentTemplate');
@@ -43,8 +45,10 @@ Route::prefix('api')->group(function() {
     Route::post('cliente-qualificacao/delete', 'Client\QualificacaoController@delete');
 
     Route::get('clients', 'ClientsController@getAll');
+    Route::get('clients/table/columns', 'ClientsController@getTableColumns');
 
     Route::get('tokens', 'TokenController@getAll');
+    Route::post('tokens', 'TokenController@store');
 
 });
 
