@@ -16,7 +16,7 @@
 	                            <td>{{ template.nome }}</td>
 	                            <td>{{ template.roles.description }}</td>
 	                            <td class="text-center">
-	                                    <a href="/edit" class="btn btn-link btn-xs" title="Editar">
+	                                    <a href="/templates/edit" class="btn btn-link btn-xs" title="Editar">
 	                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 	                                    </a>
 

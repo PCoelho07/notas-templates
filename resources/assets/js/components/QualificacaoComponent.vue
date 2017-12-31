@@ -6,6 +6,7 @@
                     <tr>
                         <th>Nome do cliente</th>
                         <th>Papéis</th>
+                        <th>Templates</th>
                         <th class="text-center">Ações</th>
                     </tr>
                     </thead>
@@ -20,6 +21,14 @@
 	                            	</div>
 	                            	<div v-for="role in client.roles">
 	                            		<span class="label label-primary">{{ role.description }}</span>
+	                            	</div>
+	                            </td>
+	                            <td>
+	                            	<div v-if="client.templates.length <= 0">
+	                            		<span class="label label-warning">Não há templates para este cliente</span>
+	                            	</div>
+	                            	<div v-for="template in client.templates">
+	                            		<span class="label label-primary">{{ template.nome }}</span>
 	                            	</div>
 	                            </td>
 	                            <td class="text-center">

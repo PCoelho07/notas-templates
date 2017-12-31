@@ -3,14 +3,14 @@
 		<div class="row">
 		  <div class="form-group col-md-4">
 		    <label for="name">Nome template:</label>
-		    <input type="text" class="form-control" name="name" value="" v-model="role.nome" required>
+		    <input type="text" class="form-control" name="name" value="" v-model="template.nome" required>
 		  </div>
 		</div>
 
 		<div class="row">
 			<div class="form-group col-md-4">
 			  	<label for="roles_text">Papel:</label>
-			  	<select class="form-control" name="roles_text" v-model="role.roleSelected" >
+			  	<select class="form-control" name="roles_text" v-model="template.roleSelected" >
 			  		<option value="0" selected disabled="">Escolha um papel...</option>
 			  		<option :value="role.id" v-for="role in roles">{{ role.description }}</option>
 			  	</select>
@@ -22,7 +22,7 @@
 				<label for="">Tokens:</label>
 				<div class="well">
 					<div v-for="token in tokens">
-						<button class="btn btn-default" @click="insertText" >{{ token.slug }}</button>
+						<a class="btn btn-default" @click="insertText(token.slug)">{{ token.slug }}</a>
 					</div>
 				</div>
 			</div>
@@ -32,7 +32,7 @@
 			<div class="form-group col-md-12">
 				<label for="text_template">Texto:</label>
 
-				<tinymce id='d1' v-model="role.textTemplate"></tinymce>	
+				<tinymce id='d1' v-model="template.textTemplate"></tinymce>	
 			</div>
 		</div>
 
@@ -53,12 +53,15 @@
 </template>
 <script>
 	export default {
+		props:[
+			'editTemplate'
+		],
 		data() {
 			return {
 				roles: [],
 				tokens: [],
 				
-				role: {
+				template: {
 					nome: '',
 					roleSelected: 0,
 					textTemplate: ''
@@ -68,18 +71,25 @@
 		},
 		computed: {
 			isValid: function() {
-				return ((this.role.nome != '') 
-							&& (this.role.roleSelected != 0)) 
-								&& (this.role.textTemplate != '');
+				return ((this.template.nome != '') 
+							&& (this.template.roleSelected != 0)) 
+								&& (this.template.textTemplate != '');
 			}
 		},
 		mounted() {
 			this.init();
+
 		},
 		methods: {
 			init: function() {
-				this.getAllRoles();
-				this.getAllTokens();
+				if(this.editTemplate == null) {
+					this.getAllRoles();
+					this.getAllTokens();
+					return;					
+				}
+
+				this.template = this.editTemplate;
+
 			},
 			getAllRoles: function() {
 				var self = this;
@@ -103,9 +113,9 @@
 				var self = this;
 
 				var data = {
-					'roles_id': this.role.roleSelected,
-					'txt_template': this.role.textTemplate,
-					'nome': this.role.nome
+					'roles_id': this.template.roleSelected,
+					'txt_template': this.template.textTemplate,
+					'nome': this.template.nome
 				};
 
 				axios.post('/api/templates', data)
@@ -113,18 +123,9 @@
 							window.location.href = '/templates';
 						});
 			},
-			insertText: function() {
-					
-					var text = this.role.textTemplate;
-
-
-		            var cursorPos = $('#d1').prop('selectionStart');
-		            var v = this.role.txtTemplate;
-		            var textBefore = v.substring(0,  cursorPos );
-		            var textAfter  = v.substring( cursorPos, v.length );
-		            // $('#text').val( textBefore+ $(this).val() +textAfter );
-		            this.role.txtTemplate = textBefore+ this.role.txtTemplate +textAfter;
-		        
+			insertText: function(slug) {
+				var slugFormatted = "{{ $"+slug+" }}";
+				this.template.textTemplate += slugFormatted;		        
 			}
 
 		}
