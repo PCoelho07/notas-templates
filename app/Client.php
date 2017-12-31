@@ -36,4 +36,20 @@ class Client extends Model
 
         return $result;
     }
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Client\Role', 'client_qualification', 'client_id', 'role_id')->withTimestamps();
+    }
+
+    public function templates()
+    {
+        return $this->belongsToMany('App\Template', 'client_qualification', 'client_id', 'template_id')->withTimestamps();
+    }
+
+    public function getTableColumns() {
+        return $this->getConnection()
+                        ->getSchemaBuilder()
+                        ->getColumnListing($this->getTable());
+    }
 }

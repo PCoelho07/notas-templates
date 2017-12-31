@@ -16,5 +16,4 @@
 	<form method="POST" action="/clients" autocomplete="off">
 		@include ('clients._form', ['buttonText' => 'Cadastrar'])
 	</form>
-
 @endsection

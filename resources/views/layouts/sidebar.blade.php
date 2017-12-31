@@ -11,6 +11,9 @@
               <a href="#"><i class="fa fa-files-o"></i> Cadastros <span class="fa fa-chevron-down"></span></a>
               <ul class="nav child_menu ch2">
                 <li><a href="/clients">Clientes</a></li>
+                <li><a href="/templates">Templates</a></li>
+                <li><a href="/cliente-qualificacao">Qualificação por cliente</a></li>
+                <li><a href="/tokens/create">Tokens</a></li>
               </ul>
             </li>
           </ul>
